@@ -17,12 +17,7 @@ class Customer
     result = "Rental Record for #{@name}\n"
     @rentals.each do |element|
 
-      frequent_renter_points += 1
-
-      if element.movie.price_code == Movie::NEW_RELEASE && 
-         element.days_rented > 1
-        frequent_renter_points += 1
-      end
+      frequent_renter_points += frequent_renter_points_for(element)
 
       result += "\t" + element.movie.title + 
                 "\t" + element.charge.to_s + "\n"
@@ -35,5 +30,16 @@ class Customer
     result
   end
 
+
+  def frequent_renter_points_for(rental)
+    result = 1
+
+    if rental.movie.price_code == Movie::NEW_RELEASE && 
+       rental.days_rented > 1
+      result += 1
+    end
+
+    result
+  end
 
 end
