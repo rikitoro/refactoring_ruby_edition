@@ -11,3 +11,4 @@ yoshiaki.add_rental(rental1)
 yoshiaki.add_rental(rental2)
 
 puts yoshiaki.statement
+puts yoshiaki.html_statement
