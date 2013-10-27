@@ -14,8 +14,8 @@ describe Customer do
   context '1 REGULAR rental with 5 rented days:' do
     before { @yoshiaki.add_rental(@rental_gww) }
 
-    describe '#total_amount' do
-      subject { @yoshiaki.total_amount }
+    describe '#total_charge' do
+      subject { @yoshiaki.total_charge }
       it { should == 6.5 }
     end
 
@@ -31,8 +31,8 @@ describe Customer do
       @yoshiaki.add_rental(@rental_tgr)
     end
 
-    describe '#total_amount' do
-      subject { @yoshiaki.total_amount }
+    describe '#total_charge' do
+      subject { @yoshiaki.total_charge }
       it { should == 21.5 }
     end
 
