@@ -20,7 +20,7 @@ class Customer
     end
         
     result += "Amount owed is #{total_charge}\n"
-    result += "You earned #{frequent_renter_points} frequent renter points"
+    result += "You earned #{total_frequent_renter_points} frequent renter points"
     result
   end
 
@@ -28,7 +28,7 @@ class Customer
     @rentals.inject(0) { |sum, rental| sum + rental.charge  }
   end
 
-  def frequent_renter_points
+  def total_frequent_renter_points
     @rentals.inject(0) { |sum, rental| sum + rental.frequent_renter_points }
   end
 

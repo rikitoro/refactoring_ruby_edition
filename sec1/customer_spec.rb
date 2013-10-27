@@ -19,8 +19,8 @@ describe Customer do
       it { should == 6.5 }
     end
 
-    describe '#frequent_renter_points' do
-      subject { @yoshiaki.frequent_renter_points }
+    describe '#total_frequent_renter_points' do
+      subject { @yoshiaki.total_frequent_renter_points }
       it { should == 1 }
     end
   end
@@ -36,8 +36,8 @@ describe Customer do
       it { should == 21.5 }
     end
 
-    describe '#frequent_renter_points' do
-      subject { @yoshiaki.frequent_renter_points }
+    describe '#total_frequent_renter_points' do
+      subject { @yoshiaki.total_frequent_renter_points }
       it { should == 3 }
     end
   end
