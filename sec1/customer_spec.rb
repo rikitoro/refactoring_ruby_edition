@@ -4,9 +4,9 @@ require_relative 'customer'
 
 describe Customer do
   before do
-    @gone_with_window = Movie.new("Gone with Window", Movie::REGULAR)
+    @gone_with_window = Movie.new("Gone with Window", RegularPrice.new)
     @rental_gww = Rental.new(@gone_with_window, 5)
-    @the_gold_rush = Movie.new("The Gold Rush", Movie::NEW_RELEASE)
+    @the_gold_rush = Movie.new("The Gold Rush", NewReleasePrice.new)
     @rental_tgr = Rental.new(@the_gold_rush, 5)
     @yoshiaki = Customer.new("yoshiaki")
   end

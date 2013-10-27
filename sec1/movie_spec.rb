@@ -7,7 +7,7 @@ describe Movie do
   end
 
   context 'REGULAR movie with 5 rented days:' do
-    before { @gone_with_window = Movie.new("Gone with Window", Movie::REGULAR) }
+    before { @gone_with_window = Movie.new("Gone with Window", RegularPrice.new) }
 
     describe '#charge(rented_days)' do
       subject { @gone_with_window.charge(5) }
@@ -21,7 +21,7 @@ describe Movie do
   end
 
   context 'NEW_RELEASE movie with 4 rented days:' do
-    before { @the_gold_rush = Movie.new("The Gold Rush", Movie::NEW_RELEASE) }
+    before { @the_gold_rush = Movie.new("The Gold Rush", NewReleasePrice.new) }
 
     describe '#total_charge(rented_days)' do
       subject { @the_gold_rush.charge(4) }
