@@ -15,9 +15,9 @@ class Customer
   def statement
     frequent_renter_points = 0
     result = "Rental Record for #{@name}\n"
-    @rentals.each do |element|      
-      result += "\t" + element.movie.title + 
-          "\t" + element.charge.to_s + "\n"
+    @rentals.each do |rental|      
+      result += "\t" + rental.movie.title + 
+          "\t" + rental.charge.to_s + "\n"
     end
         
     result += "Amount owed is #{total_amount}\n"
@@ -30,15 +30,14 @@ class Customer
   end
 
   def frequent_renter_points
-    result = 0
-    @rentals.each do |element|      
+    @rentals.inject(0) { |sum, rental| sum + frequent_renter_points_for(rental) }
+  end
+
+  def frequent_renter_points_for(rental)
+    result = 1
+    if rental.movie.price_code == Movie::NEW_RELEASE && rental.days_rented > 1
       result += 1
-      if element.movie.price_code == Movie::NEW_RELEASE && element.days_rented > 1
-        result += 1
-      end
     end
     result
   end
-
-
 end
