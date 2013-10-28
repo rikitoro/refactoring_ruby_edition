@@ -12,11 +12,7 @@ class Customer
   end
 
   def print_owing
-    #print banner
-    puts "*************************"
-    puts "***** Customer Owes *****"
-    puts "*************************"
-
+    print_banner
     # calculate outstanging
     outstanding = 0
     @orders.each do |order|
@@ -26,6 +22,12 @@ class Customer
     # print details
     puts "name: #{@name}"
     puts "amount: #{outstanding}"
+  end
+
+  def print_banner
+    puts "*************************"
+    puts "***** Customer Owes *****"
+    puts "*************************"
   end
   
 end
