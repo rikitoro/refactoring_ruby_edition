@@ -28,10 +28,6 @@ class Customer
   end
 
   def calculate_outstanding
-    outstanding = 0
-    @orders.each do |order|
-      outstanding += order.amount
-    end
-    outstanding    
+    @orders.inject(0) { |result, order| result + order.amount }
   end  
 end
