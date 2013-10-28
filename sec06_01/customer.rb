@@ -1,3 +1,5 @@
+require_relative 'order'
+
 class Customer
   def initialize(name)
     @name = name
@@ -26,11 +28,4 @@ class Customer
     puts "amount: #{outstanding}"
   end
   
-end
-
-class Order
-  attr_reader :amount
-  def initialize(amount)
-    @amount = amount
-  end
 end
