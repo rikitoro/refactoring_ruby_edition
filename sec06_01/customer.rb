@@ -13,12 +13,8 @@ class Customer
 
   def print_owing
     print_banner
-    # calculate outstanging
     outstanding = calculate_outstanding
-
-    # print details
-    puts "name: #{@name}"
-    puts "amount: #{outstanding}"
+    print_details(outstanding)
   end
 
   def print_banner
@@ -30,4 +26,9 @@ class Customer
   def calculate_outstanding
     @orders.inject(0) { |result, order| result + order.amount }
   end  
+
+  def print_details(outstanding)
+    puts "name: #{@name}"
+    puts "amount: #{outstanding}"
+  end
 end
