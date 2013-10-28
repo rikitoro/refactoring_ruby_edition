@@ -1,0 +1,36 @@
+class Customer
+  def initialize(name)
+    @name = name
+    @orders = []
+  end
+
+  def add_order(order)
+    @orders << order
+    self
+  end
+
+  def print_owing
+    #print banner
+    puts "*************************"
+    puts "***** Customer Owes *****"
+    puts "*************************"
+
+    # calculate outstanging
+    outstanding = 0
+    @orders.each do |order|
+      outstanding += order.amount
+    end
+
+    # print details
+    puts "name: #{@name}"
+    puts "amount: #{outstanding}"
+  end
+  
+end
+
+class Order
+  attr_reader :amount
+  def initialize(amount)
+    @amount = amount
+  end
+end
