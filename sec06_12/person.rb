@@ -24,9 +24,14 @@ class Person
   end
 
   def number_of_descendants_named(name)
+    number_of_descendants_matching { |child| child.name == name }
+  end
+
+  protected
+  def number_of_descendants_matching(&block)
     @children.inject 0 do |count, child|
-      count += 1 if child.name == name
-      count + child.number_of_descendants_named(name)
+      count += 1 if yield child 
+      count + child.number_of_descendants_matching(&block)
     end 
   end
 
