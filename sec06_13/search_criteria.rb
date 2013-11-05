@@ -2,9 +2,9 @@ class SearchCriteria
   attr_reader :author_id, :publisher_id, :isbn
 
   def initialize(hash)
-    @author_id = 1  
-    @publisher_id = 3
-    @isbn = "1234567890"
+    @author_id = hash[:author_id]
+    @publisher_id = hash[:publisher_id]
+    @isbn = hash[:isbn]
   end
 
 
