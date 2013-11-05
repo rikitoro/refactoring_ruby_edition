@@ -1,7 +1,6 @@
-class SearchCriteria
-  attr_reader :author_id, :publisher_id, :isbn
+module CustomInitializers
 
-  def self.hash_initializer(*attribute_names)
+  def hash_initializer(*attribute_names)
     define_method(:initialize) do |*args|
       data = args.first || {}
       attribute_names.each do |attribute_name|
@@ -9,6 +8,12 @@ class SearchCriteria
       end
     end
   end
-  
+
+end
+
+Class.send :include, CustomInitializers
+
+class SearchCriteria
+  attr_reader :author_id, :publisher_id, :isbn
   hash_initializer :author_id, :publisher_id, :isbn
 end
