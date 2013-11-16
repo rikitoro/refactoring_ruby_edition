@@ -13,39 +13,21 @@ def capture(stream)
 end
 
 describe Recorder do
-  describe '#messages' do
-    context 'after #start("LRMMMMRL")' do
-      before do
-        @rec = Recorder.new
-        @rec.start("LRMMMMRL")
-      end
-      it { expect(@rec.messages).to eq [[:start, ["LRMMMMRL"]]]}
-    end
-    context 'after #start("LRMMMMRL").#stop("LRMMMMRL")' do
-      before do
-        @rec = Recorder.new
-        @rec.start("LRMMMMRL")
-        @rec.stop("LRMMMMRL")
-      end
-      it { expect(@rec.messages).
-        to eq [[:start, ["LRMMMMRL"]],[:stop, ["LRMMMMRL"]]]}
-    end
-  end
 
   describe 'stdout of #play_for with CommandCenter' do 
-    context 'after #start("LRMMMMRL")' do
+    context 'after #record.start("LRMMMMRL")' do
       before do
         @rec = Recorder.new
-        @rec.start("LRMMMMRL")
+        @rec.record.start("LRMMMMRL")
         @put_string = capture(:stdout) { @rec.play_for(CommandCenter.new) }
       end
       it { expect(@put_string).to eq "CC:start LRMMMMRL\n" }
     end
-    context 'after #start("LRMMMMRL") #stop("LRMMMMRL")' do
+    context 'after #record.start("LRMMMMRL") #record.stop("LRMMMMRL")' do
       before do
         @rec = Recorder.new
-        @rec.start("LRMMMMRL")
-        @rec.stop("LRMMMMRL")
+        @rec.record.start("LRMMMMRL")
+        @rec.record.stop("LRMMMMRL")
         @put_string = capture(:stdout) { @rec.play_for(CommandCenter.new) }
       end
       it { expect(@put_string).to eq "CC:start LRMMMMRL\nCC:stop LRMMMMRL\n" }
