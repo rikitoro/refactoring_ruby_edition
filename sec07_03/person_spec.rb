@@ -1,6 +1,7 @@
 require 'rspec'
 require_relative 'person'
 
+
 describe Person do
   let(:bob) { Person.new("Bob", "022", "333-4455") }
   let(:alice) { Person.new("Alice", "022", "666-7788") }

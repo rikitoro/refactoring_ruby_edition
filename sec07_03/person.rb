@@ -1,3 +1,5 @@
+require 'forwardable'
+
 class Person
 
   attr_reader :name
@@ -9,17 +11,10 @@ class Person
     @office_telephone = TelephoneNumber.new(office_area_code, office_number)
   end
   
-  def telephone_number
-    @office_telephone.telephone_number
-  end
-
-  def office_area_code
-    @office_telephone.area_code
-  end
-
-  def office_number
-    @office_telephone.number
-  end
+  extend Forwardable
+  def_delegator :@office_telephone, :area_code, :office_area_code
+  def_delegator :@office_telephone, :number, :office_number
+  def_delegator :@office_telephone, :telephone_number
 end
 
 class TelephoneNumber
