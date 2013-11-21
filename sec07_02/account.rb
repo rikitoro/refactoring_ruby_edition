@@ -1,3 +1,5 @@
+require 'forwardable'
+
 class AccountType
   attr_accessor :interest_rate
 
@@ -8,6 +10,9 @@ end
 
 class Account
 
+  extend Forwardable
+  def_delegators :@account_type, :interest_rate, :interest_rate=
+
   def initialize(account_type)
     @account_type = account_type
   end
@@ -16,7 +21,4 @@ class Account
     interest_rate * amount * days / 365
   end
 
-  def interest_rate
-    @account_type.interest_rate
-  end
 end
