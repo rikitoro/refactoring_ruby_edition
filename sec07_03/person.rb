@@ -10,7 +10,7 @@ class Person
   end
   
   def telephone_number
-    '(' + office_area_code + ') ' + office_number
+    @office_telephone.telephone_number
   end
 
   def office_area_code
@@ -27,5 +27,9 @@ class TelephoneNumber
   def initialize(area_code, number)
     @area_code = area_code
     @number = number
+  end
+
+  def telephone_number
+    '(' + area_code + ') ' + number
   end
 end
