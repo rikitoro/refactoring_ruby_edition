@@ -1,7 +1,7 @@
 class Order
 
   def initialize(customer_name)
-    @customer = Customer.create(customer_name)
+    @customer = Customer.with_name(customer_name)
   end
 
   def customer_name
@@ -9,17 +9,30 @@ class Order
   end
 
   def customer=(customer_name)
-    @customer = Customer.create(customer_name)
+    @customer = Customer.with_name(customer_name)
   end
 end
 
 class Customer
 
-  def self.create(name)
-    Customer.new(name)
+  Instances = {}
+
+  def self.load_customers
+    new("Lemon Car Hire").store
+    new("Associated Coffee Machines").store
+    new("Bilston Gasworks").store
   end
 
+
   attr_reader :name
+
+  def store
+    Instances[name] = self
+  end
+    
+  def self.with_name(name)
+    Instances[name]
+  end
 
   def initialize(name)
     @name = name
