@@ -11,8 +11,8 @@ describe Person do
         @alice.department = @sales_dept
         @bob.department = @sales_dept
       end
-      describe 'bob#department#manager' do
-        it {expect(@bob.department.manager).to eq @alice}
+      describe 'bob#manager' do
+        it {expect(@bob.manager).to eq @alice}
       end
     end
   end
