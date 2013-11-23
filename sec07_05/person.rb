@@ -1,7 +1,7 @@
 require 'forwardable'
 
 class Person
-  attr_accessor :department
+  attr_writer :department
   extend Forwardable
   def_delegator :@department, :manager
 end
