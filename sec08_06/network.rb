@@ -1,22 +1,10 @@
-class Network
-  attr_reader :name
-
-  def initialize(name)
-    @name = name
-  end
-end
-
-class Node
-  attr_reader :network
-
-  def initialize(network)
-    @network = network
-  end
-end
+require_relative 'node'
+require_relative 'network_result'
 
 node1 = Node.new(Network.new("potosnet"))
 node2 = Node.new(Network.new("earthnet"))
-new_network = { nodes: [], old_networks: [] }
+#new_network = { nodes: [], old_networks: [] }
+new_network = NetworkResult.new
 new_network[:nodes] << node1
 new_network[:nodes] << node2
 new_network[:old_networks] << node1.network
