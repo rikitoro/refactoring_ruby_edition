@@ -1,5 +1,6 @@
 class NetworkResult
-
+  attr_reader :old_networks
+  
   def [](attribute)
     instance_variable_get "@#{attribute}"
   end
