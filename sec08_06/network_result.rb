@@ -1,6 +1,6 @@
 class NetworkResult
-  attr_reader :old_networks
-  
+  attr_reader :old_networks, :nodes
+
   def [](attribute)
     instance_variable_get "@#{attribute}"
   end
@@ -12,5 +12,9 @@ class NetworkResult
   def initialize
     @old_networks = []
     @nodes = []
+  end
+
+  def name
+    @old_networks.map(&:name).join(" - ")
   end
 end
