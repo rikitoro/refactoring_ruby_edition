@@ -8,17 +8,13 @@ class Customer
     @discount = discount
   end
 
-  def friend_orders
-    @orders
-  end
-
   def add_order(order)
-    order.customer = self
+    @orders.add(order)
   end
 
   def price_for(order)
     assert { @orders.include?(order) }
-    order.discounted_price
+    order.discounted_price(self)
   end
 
   def assert

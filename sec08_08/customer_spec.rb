@@ -9,7 +9,7 @@ describe Customer do
     context 'when customer bob adds order book' do
       before { bob.add_order(book) }
       it "book should eq book's discounted price" do
-        expect(bob.price_for(book)).to eq book.discounted_price
+        expect(bob.price_for(book)).to eq book.discounted_price(bob)
       end
     end
   end
