@@ -1,9 +1,11 @@
 require 'set'
 
 class Customer
+  attr_reader :discount
 
-  def initialize
-    @orders = Set.new  
+  def initialize(discount)
+    @orders = Set.new
+    @discount = discount
   end
 
   def friend_orders
@@ -13,4 +15,13 @@ class Customer
   def add_order(order)
     order.customer = self
   end
+
+  def price_for(order)
+    assert { @orders.include?(order) }
+    order.discounted_price
+  end
+
+  def assert
+    raise "Error: order is not included in orders" unless yield
+  end 
 end
