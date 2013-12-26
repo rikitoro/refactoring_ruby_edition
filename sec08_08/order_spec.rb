@@ -2,15 +2,13 @@ require 'rspec'
 require_relative 'order'
 require_relative 'customer'
 
-describe Customer do
+describe Order do
   let(:bob) { Customer.new(0.2) }
   let(:book) { Order.new(1980) }
-  describe '#proce_for' do
+  describe '#discounted_price' do
     context 'when customer bob adds order book' do
       before { bob.add_order(book) }
-      it "book should eq book's discounted price" do
-        expect(bob.price_for(book)).to eq book.discounted_price(bob)
-      end
+      it { expect(book.discounted_price(bob)).to eq 1980 * 0.8 }
     end
   end
 end
