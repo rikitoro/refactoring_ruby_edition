@@ -1,5 +1,4 @@
 class Person
-  attr_reader :courses
   def initialize
     @courses = []
   end
@@ -15,5 +14,9 @@ class Person
   def initialize_courses(courses)
     raise "Courses should be empty" unless @courses.empty?
     courses.each { |course| add_course(course) }
+  end
+
+  def courses
+    @courses.dup
   end
 end
