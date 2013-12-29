@@ -1,5 +1,5 @@
 class Person
-  attr_accessor :courses
+  attr_reader :courses
   def initialize
     @courses = []
   end
