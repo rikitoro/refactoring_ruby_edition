@@ -19,4 +19,8 @@ class Person
   def courses
     @courses.dup
   end
+
+  def number_of_courses
+    @courses.size
+  end
 end

@@ -26,7 +26,7 @@ describe "Person#courses" do
         kent.add_course(Course.new("Brutal Sarcasm", false))
       end
       it do
-        expect(kent.courses.size).to eq 4
+        expect(kent.number_of_courses).to eq 4
       end
     end
 
@@ -45,7 +45,7 @@ describe "Person#courses" do
       kent.remove_course(refactoring)
     end
     describe "#size" do
-      it { expect(kent.courses.size).to eq 3}
+      it { expect(kent.number_of_courses).to eq 3}
     end
     describe "number of advanced course should eq 1" do
       it { expect(kent.courses.count(&:advanced?)).to eq 1}
