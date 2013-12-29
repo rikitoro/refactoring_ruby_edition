@@ -23,4 +23,8 @@ class Person
   def number_of_courses
     @courses.size
   end
+
+  def number_of_advanced_courses
+    @courses.count(&:advanced?)
+  end
 end

@@ -48,7 +48,7 @@ describe "Person#courses" do
       it { expect(kent.number_of_courses).to eq 3}
     end
     describe "number of advanced course should eq 1" do
-      it { expect(kent.courses.count(&:advanced?)).to eq 1}
+      it { expect(kent.number_of_advanced_courses).to eq 1}
     end
 
   end
