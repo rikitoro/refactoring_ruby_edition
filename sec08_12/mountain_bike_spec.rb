@@ -1,9 +1,11 @@
 require 'rspec'
-require_relative 'mountain_bike'
+require_relative 'rigid_mountain_bike'
+require_relative 'front_suspension_mountain_bike'
+require_relative 'full_suspension_mountain_bike'
 
 describe MountainBike do
-  context 'for rigit type bike' do
-    let(:bike) { MountainBike.new(type_code: :rigid,
+  context 'for rigid type bike' do
+    let(:bike) { RigidMountainBike.new(type_code: :rigid,
       tire_width: 2.5, commission: 0.1, base_price: 200) }
     describe '#off_road_ability' do
       it { expect(bike.off_road_ability).to eq 2.5 * 0.5 }
@@ -14,7 +16,7 @@ describe MountainBike do
   end
 
   context 'for front suspension type bike' do
-    let(:bike) { MountainBike.new(type_code: :front_suspension,
+    let(:bike) { FrontSuspensionMountainBike.new(type_code: :front_suspension,
       tire_width: 2, front_fork_travel: 3, 
       commission: 0.1, base_price: 200, front_suspension_price: 20) }
     describe '#off_road_ability' do
@@ -26,7 +28,7 @@ describe MountainBike do
   end
 
   context 'for full suspension type bike' do
-    let(:bike) { MountainBike.new(type_code: :full_suspension,
+    let(:bike) { FullSuspensionMountainBike.new(type_code: :full_suspension,
       tire_width: 2, front_fork_travel: 3, rear_fork_travel: 3,
       commission: 0.1, base_price: 200, front_suspension_price: 20, rear_suspension_price: 15) }
     describe '#off_road_ability' do
