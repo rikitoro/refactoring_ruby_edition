@@ -30,24 +30,10 @@ class MountainBike
   end
 
   def off_road_ability
-    result = @tire_width * TIRE_WIDTH_FACTOR
-    if type_code == :front_suspension || type_code == :full_suspension
-      result += @front_fork_travel * FRONT_SUSPENSION_FACTOR
-    end
-    if type_code == :full_suspension
-      result += @rear_fork_travel * REAR_SUSPENSION_FACTOR
-    end
-    result
+    @tire_width * TIRE_WIDTH_FACTOR
   end
 
   def price
-    case type_code
-    when :rigid
-      (1 + @commission) * @base_price
-    when :front_suspension
-      raise "shouldn't get here"
-    when :full_suspension
-      raise "shouldn't get here"
-    end
+    (1 + @commission) * @base_price
   end
 end
