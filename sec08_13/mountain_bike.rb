@@ -19,14 +19,8 @@ class MountainBike
     @rear_suspension_price = params[:rear_suspension_price]
   end
 
-  def type_code=(value)
-    @type_code = value
-    case type_code
-    when :front_suspension 
-      extend(FrontSuspensionMountainBike)
-    when :full_suspension 
-      extend(FullSuspensionMountainBike)
-    end
+  def type_code=(mod)
+    extend(mod) unless mod.nil?
   end
 
   def off_road_ability
