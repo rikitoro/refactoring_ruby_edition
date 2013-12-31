@@ -1,3 +1,6 @@
+require_relative 'front_suspension_mountain_bike'
+require_relative 'full_suspension_mountain_bike'
+
 class MountainBike
   TIRE_WIDTH_FACTOR = 0.5
   FRONT_SUSPENSION_FACTOR = 0.3
@@ -18,6 +21,12 @@ class MountainBike
 
   def type_code=(value)
     @type_code = value
+    case type_code
+    when :front_suspension 
+      extend(FrontSuspensionMountainBike)
+    when :full_suspension 
+      extend(FullSuspensionMountainBike)
+    end
   end
 
   def off_road_ability
@@ -36,9 +45,9 @@ class MountainBike
     when :rigid
       (1 + @commission) * @base_price
     when :front_suspension
-      (1 + @commission) * @base_price + @front_suspension_price
+      raise "shouldn't get here"
     when :full_suspension
-      (1 + @commission) * @base_price + @front_suspension_price + @rear_suspension_price
+      raise "shouldn't get here"
     end
   end
 end
