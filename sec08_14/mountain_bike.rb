@@ -33,6 +33,8 @@ class MountainBike
 
   def add_front_suspension(params)
     self.type_code = :front_suspension
+    @bike_type = FrontSuspensionMountainBike.new(
+      { tire_width: @tire_width }.merge(params) )
     set_state_from_hash(params)
   end
 
@@ -41,6 +43,8 @@ class MountainBike
       raise "You can't rear suspension unless you have front suspension"
     end
     self.type_code = :full_suspension
+    @bike_type = FullSuspensionMountainBike.new(
+      { tire_width: @tire_width, front_fork_travel: @front_fork_travel}.merge(params) )
     set_state_from_hash(params)
   end
 
