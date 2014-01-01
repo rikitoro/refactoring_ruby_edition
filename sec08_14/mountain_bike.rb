@@ -8,7 +8,6 @@ class MountainBike
   FRONT_SUSPENSION_FACTOR = 0.3
   REAR_SUSPENSION_FACTOR = 0.2
 
-  attr_reader :type_code
 
   extend Forwardable
   def_delegators :@bike_type, :off_road_ability, :price
