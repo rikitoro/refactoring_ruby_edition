@@ -12,4 +12,12 @@ class RigidMountainBike
   def price
     (1 + @commission) * @base_price
   end
+
+  def upgradable_parameters
+    {
+      tire_width: @tire_width,
+      base_price: @base_price,
+      commission: @commission
+    }
+  end
 end
