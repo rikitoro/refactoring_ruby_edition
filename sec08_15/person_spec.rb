@@ -1,7 +1,7 @@
 require 'rspec'
-require_relative 'male'
+require_relative 'person'
 
-describe Male do 
+describe 'Male' do 
   let(:bob) { Person.create_male }
   it { expect(bob).not_to be_female }
   describe '#code' do

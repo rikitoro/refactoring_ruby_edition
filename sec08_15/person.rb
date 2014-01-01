@@ -5,7 +5,7 @@ class Person
   end
 
   def self.create_male
-    Male.new
+    Person.new(false, 'M')
   end
 
   attr_reader :code
@@ -18,4 +18,6 @@ class Person
   def female?
     @female
   end
+
+
 end
