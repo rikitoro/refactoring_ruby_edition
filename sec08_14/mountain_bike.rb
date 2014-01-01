@@ -1,3 +1,7 @@
+require_relative 'rigid_mountain_bike'
+require_relative 'front_suspension_mountain_bike'
+require_relative 'full_suspension_mountain_bike'
+
 class MountainBike
   TIRE_WIDTH_FACTOR = 0.5
   FRONT_SUSPENSION_FACTOR = 0.3
@@ -11,7 +15,16 @@ class MountainBike
 
   def type_code=(value)
     @type_code = value
+    @bike_type = case type_code
+    when :rigid
+      RigidMountainBike.new
+    when :front_suspension
+      FrontSuspensionMountainBike.new
+    when :full_suspension
+      FullSuspensionMountainBike.new
+    end
   end
+
   def add_front_suspension(params)
     self.type_code = :front_suspension
     set_state_from_hash(params)
