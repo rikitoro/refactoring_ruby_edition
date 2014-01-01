@@ -11,7 +11,7 @@ class MountainBike
   attr_reader :type_code
 
   extend Forwardable
-  def_delegators :@bike_type, :off_road_ability
+  def_delegators :@bike_type, :off_road_ability, :price
 
   def initialize(params)
     set_state_from_hash(params)
@@ -21,20 +21,25 @@ class MountainBike
     @type_code = value
     @bike_type = case type_code
     when :rigid
-      RigidMountainBike.new(tire_width: @tire_width)
+      RigidMountainBike.new(
+        tire_width: @tire_width, base_price: @base_price, commission: @commission)
     when :front_suspension
-      FrontSuspensionMountainBike.new(tire_width: @tire_width, 
-        front_fork_travel: @front_fork_travel)
+      FrontSuspensionMountainBike.new(
+        tire_width: @tire_width, base_price: @base_price, commission: @commission,
+        front_fork_travel: @front_fork_travel, front_suspension_price: @front_suspension_price)
     when :full_suspension
-      FullSuspensionMountainBike.new(tire_width: @tire_width,
-        front_fork_travel: @front_fork_travel, rear_fork_travel: @rear_fork_travel)
+      FullSuspensionMountainBike.new(
+        tire_width: @tire_width, base_price: @base_price, commission: @commission,
+        front_fork_travel: @front_fork_travel, rear_fork_travel: @rear_fork_travel,
+        front_suspension_price: @front_suspension_price, 
+        rear_suspension_price: @rear_suspension_price)
     end
   end
 
   def add_front_suspension(params)
     self.type_code = :front_suspension
     @bike_type = FrontSuspensionMountainBike.new(
-      { tire_width: @tire_width }.merge(params) )
+      { commission: @commission, tire_width: @tire_width, base_price: @base_price }.merge(params) )
     set_state_from_hash(params)
   end
 
@@ -44,20 +49,10 @@ class MountainBike
     end
     self.type_code = :full_suspension
     @bike_type = FullSuspensionMountainBike.new(
-      { tire_width: @tire_width, front_fork_travel: @front_fork_travel}.merge(params) )
+      { commission: @commission, tire_width: @tire_width, base_price: @base_price,
+        front_fork_travel: @front_fork_travel, 
+        front_suspension_price: @front_suspension_price}.merge(params) )
     set_state_from_hash(params)
-  end
-
-
-  def price
-    case self.type_code
-    when :rigid
-      (1 + @commission) * @base_price
-    when :front_suspension
-      (1 + @commission) * @base_price + @front_suspension_price
-    when :full_suspension
-      (1 + @commission) * @base_price + @front_suspension_price + @rear_suspension_price
-    end
   end
 
   private 

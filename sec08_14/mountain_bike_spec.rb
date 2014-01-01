@@ -38,9 +38,11 @@ describe MountainBike do
   end
 
   context 'for front suspension bike created by add_front_suspension ' do
-    let(:bike) { MountainBike.new(type_code: :rigid,
+    let(:bike) { MountainBike.new(
+      type_code: :rigid,
       tire_width: 3, base_price: 100, commission: 0.1) }
-    before { bike.add_front_suspension(front_fork_travel: 10,
+    before { bike.add_front_suspension(
+      front_fork_travel: 10,
       front_suspension_price: 20)}
     describe '#off_road_ability' do
       it { expect(bike.off_road_ability).to eq 3 * 0.5 + 10 * 0.3 }
