@@ -1,3 +1,4 @@
+require 'forwardable'
 require_relative 'rigid_mountain_bike'
 require_relative 'front_suspension_mountain_bike'
 require_relative 'full_suspension_mountain_bike'
@@ -9,6 +10,9 @@ class MountainBike
 
   attr_reader :type_code
 
+  extend Forwardable
+  def_delegators :@bike_type, :off_road_ability
+
   def initialize(params)
     set_state_from_hash(params)
   end
@@ -19,9 +23,11 @@ class MountainBike
     when :rigid
       RigidMountainBike.new(tire_width: @tire_width)
     when :front_suspension
-      FrontSuspensionMountainBike.new
+      FrontSuspensionMountainBike.new(tire_width: @tire_width, 
+        front_fork_travel: @front_fork_travel)
     when :full_suspension
-      FullSuspensionMountainBike.new
+      FullSuspensionMountainBike.new(tire_width: @tire_width,
+        front_fork_travel: @front_fork_travel, rear_fork_travel: @rear_fork_travel)
     end
   end
 
@@ -38,17 +44,6 @@ class MountainBike
     set_state_from_hash(params)
   end
 
-  def off_road_ability
-    return @bike_type.off_road_ability if type_code == :rigid
-    result = @tire_width * TIRE_WIDTH_FACTOR
-    if self.type_code == :front_suspension || self.type_code == :full_suspension
-      result += @front_fork_travel * FRONT_SUSPENSION_FACTOR
-    end
-    if self.type_code == :full_suspension
-      result += @rear_fork_travel * REAR_SUSPENSION_FACTOR
-    end
-    result
-  end
 
   def price
     case self.type_code
