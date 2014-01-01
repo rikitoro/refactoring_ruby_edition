@@ -17,7 +17,7 @@ class MountainBike
     @type_code = value
     @bike_type = case type_code
     when :rigid
-      RigidMountainBike.new
+      RigidMountainBike.new(tire_width: @tire_width)
     when :front_suspension
       FrontSuspensionMountainBike.new
     when :full_suspension
@@ -39,6 +39,7 @@ class MountainBike
   end
 
   def off_road_ability
+    return @bike_type.off_road_ability if type_code == :rigid
     result = @tire_width * TIRE_WIDTH_FACTOR
     if self.type_code == :front_suspension || self.type_code == :full_suspension
       result += @front_fork_travel * FRONT_SUSPENSION_FACTOR
