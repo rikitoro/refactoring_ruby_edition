@@ -10,14 +10,21 @@ class Fee
 
   def charge(quantity, date)
     if not_summer(date)
-      result = quantity * @winter_rate + @winter_service_charge
+      winter_charge(quantity)
     else
-      result = quantity * @summer_rate
+      summer_charge(quantity)
     end
-    result
   end
 
   def not_summer(date)
     date < SUMMER_START || date > SUMMER_END
+  end
+
+  def winter_charge(quantity)
+    quantity * @winter_rate + @winter_service_charge
+  end
+
+  def summer_charge(quantity)
+    quantity * @summer_rate
   end
 end
