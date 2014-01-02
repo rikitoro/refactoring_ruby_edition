@@ -9,11 +9,8 @@ class Fee
   end
 
   def charge(quantity, date)
-    if not_summer(date)
-      winter_charge(quantity)
-    else
-      summer_charge(quantity)
-    end
+    return winter_charge(quantity) if not_summer(date)
+    summer_charge(quantity)
   end
 
   def not_summer(date)
